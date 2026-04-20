@@ -2,7 +2,7 @@
 
 # Claude Code Cyber Security Studios
 
-Turn a single Claude Code session into a full cybersecurity firm.<br>
+Turn a single Claude Code session into a full cyber security firm.<br>
 52 agents. 80+ skills. One coordinated AI security team.
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](#)
@@ -35,7 +35,7 @@ This installs nmap, sqlmap, nikto, subfinder, amass, httpx, nuclei, ffuf, gobust
 
 Running security operations with AI is powerful — but a single chat session has no structure. No methodology enforcement, no scope validation, no specialist expertise, no quality gates, and no ethical safeguards.
 
-**Claude Code Cybersecurity Studios** solves this by giving your AI session the structure of a real cybersecurity firm. Instead of one general-purpose assistant, you get **52 specialized agents** organized into a professional security hierarchy — a CISO who guards ethical boundaries, department leads who own their domains, and specialists who do hands-on technical work.
+**Claude Code Cyber Security Studios** solves this by giving your AI session the structure of a real cyber security firm. Instead of one general-purpose assistant, you get **52 specialized agents** organized into a professional security hierarchy — a CISO who guards ethical boundaries, department leads who own their domains, and specialists who do hands-on technical work.
 
 The result: AI-augmented security operations with professional methodology, automatic scope validation, and quality-gated deliverables.
 
@@ -294,7 +294,7 @@ This studio operates according to industry standards:
 |-----------|---------|
 | **MITRE ATT&CK** | Tactic/technique mapping |
 | **OWASP Top 10 / WSTG / ASVS** | Web security standards |
-| **NIST CSF / 800-53** | Cybersecurity framework |
+| **NIST CSF / 800-53** | Cyber Security framework |
 | **ISO 27001/27002** | Information security management |
 | **PTES** | Penetration testing execution standard |
 | **CVSS v3.1** | Vulnerability severity scoring |
@@ -314,5 +314,5 @@ This studio operates according to industry standards:
 
 ---
 
-*Claude Code Cybersecurity Studios — Professional Security Operations, AI-Augmented*  
+*Claude Code Cyber Security Studios — Professional Security Operations, AI-Augmented*  
 *Inspired by Claude Code Game Studios by Donchitos*

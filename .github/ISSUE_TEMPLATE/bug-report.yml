@@ -1,26 +1,52 @@
----
 name: Bug Report
-about: Report incorrect commands, broken workflows, or methodology errors
+description: Report incorrect commands, broken workflows, or methodology errors
 title: '[BUG] '
-labels: bug
-assignees: ''
----
+labels: ["bug"]
+assignees: []
+body:
+  - type: textarea
+    id: bug-description
+    attributes:
+      label: Bug Description
+      description: What is wrong?
+    validations:
+      required: true
 
-## Bug Description
-<!-- What is wrong? -->
+  - type: textarea
+    id: affected-files
+    attributes:
+      label: Affected File(s)
+      placeholder: e.g., .claude/skills/pentest/web-pentest.md
 
-## Affected File(s)
-<!-- e.g., .claude/skills/pentest/web-pentest.md -->
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behavior
+      description: What should happen?
+    validations:
+      required: true
 
-## Expected Behavior
-<!-- What should happen? -->
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual Behavior
+      description: What happens instead?
+    validations:
+      required: true
 
-## Actual Behavior
-<!-- What happens instead? -->
+  - type: textarea
+    id: suggested-fix
+    attributes:
+      label: Suggested Fix
+      description: If you know the fix, describe it here
 
-## Suggested Fix
-<!-- If you know the fix, describe it here -->
+  - type: input
+    id: claude-version
+    attributes:
+      label: Claude Code Version
 
-## Environment
-- Claude Code version:
-- macOS/Linux:
+  - type: input
+    id: os
+    attributes:
+      label: OS
+      placeholder: macOS / Linux

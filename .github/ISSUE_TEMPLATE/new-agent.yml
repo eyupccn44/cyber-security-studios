@@ -1,4 +1,5 @@
 name: New Agent Request
+description: Request a new specialist agent to be added to the studio
 title: '[AGENT] '
 labels: ["enhancement", "new-agent"]
 assignees: []

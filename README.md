@@ -1,6 +1,6 @@
 <div align="center">
 
-# Claude Code Cybersecurity Studios
+# Claude Code Cyber Security Studios
 
 Turn a single Claude Code session into a full cybersecurity firm.<br>
 52 agents. 80+ skills. One coordinated AI security team.

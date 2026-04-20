@@ -1,0 +1,27 @@
+---
+name: New Agent Request
+about: Request a new specialist agent to be added to the studio
+title: '[AGENT] '
+labels: enhancement, new-agent
+assignees: ''
+---
+
+## Agent Name
+<!-- e.g., cloud-forensics-analyst -->
+
+## Role Description
+<!-- What does this agent specialize in? What problem does it solve? -->
+
+## Tier
+- [ ] Tier 1 — Director (CISO-level strategic role)
+- [ ] Tier 2 — Lead (Department management)
+- [ ] Tier 3 — Specialist (Hands-on technical work)
+
+## Skills/Commands This Agent Would Handle
+<!-- List the slash commands this agent would be invoked by -->
+
+## Why Is This Missing?
+<!-- What use cases are not covered by existing agents? -->
+
+## References
+<!-- Industry role references, frameworks, methodology links -->

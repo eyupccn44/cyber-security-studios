@@ -1,0 +1,26 @@
+---
+name: Bug Report
+about: Report incorrect commands, broken workflows, or methodology errors
+title: '[BUG] '
+labels: bug
+assignees: ''
+---
+
+## Bug Description
+<!-- What is wrong? -->
+
+## Affected File(s)
+<!-- e.g., .claude/skills/pentest/web-pentest.md -->
+
+## Expected Behavior
+<!-- What should happen? -->
+
+## Actual Behavior
+<!-- What happens instead? -->
+
+## Suggested Fix
+<!-- If you know the fix, describe it here -->
+
+## Environment
+- Claude Code version:
+- macOS/Linux:

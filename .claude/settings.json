@@ -1,0 +1,144 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/validate-scope.sh \"$CLAUDE_TOOL_INPUT\""
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/log-agent.sh"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/ethics-check.sh"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/session-stop.sh"
+          }
+        ]
+      }
+    ],
+    "PreCompact": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/pre-compact.sh"
+          }
+        ]
+      }
+    ]
+  },
+  "permissions": {
+    "allow": [
+      "Bash(nmap:*)",
+      "Bash(nikto:*)",
+      "Bash(sqlmap:*)",
+      "Bash(gobuster:*)",
+      "Bash(ffuf:*)",
+      "Bash(curl:*)",
+      "Bash(wget:*)",
+      "Bash(python3:*)",
+      "Bash(python:*)",
+      "Bash(pip:*)",
+      "Bash(pip3:*)",
+      "Bash(git:*)",
+      "Bash(cat:*)",
+      "Bash(grep:*)",
+      "Bash(find:*)",
+      "Bash(ls:*)",
+      "Bash(mkdir:*)",
+      "Bash(cp:*)",
+      "Bash(mv:*)",
+      "Bash(echo:*)",
+      "Bash(touch:*)",
+      "Bash(chmod:*)",
+      "Bash(tee:*)",
+      "Bash(wc:*)",
+      "Bash(sort:*)",
+      "Bash(uniq:*)",
+      "Bash(awk:*)",
+      "Bash(sed:*)",
+      "Bash(jq:*)",
+      "Bash(openssl:*)",
+      "Bash(hashcat:*)",
+      "Bash(john:*)",
+      "Bash(hydra:*)",
+      "Bash(msfconsole:*)",
+      "Bash(msfvenom:*)",
+      "Bash(netcat:*)",
+      "Bash(nc:*)",
+      "Bash(socat:*)",
+      "Bash(wireshark:*)",
+      "Bash(tcpdump:*)",
+      "Bash(tshark:*)",
+      "Bash(radare2:*)",
+      "Bash(r2:*)",
+      "Bash(ghidra:*)",
+      "Bash(objdump:*)",
+      "Bash(strings:*)",
+      "Bash(file:*)",
+      "Bash(xxd:*)",
+      "Bash(strace:*)",
+      "Bash(ltrace:*)",
+      "Bash(docker:*)",
+      "Bash(kubectl:*)",
+      "Bash(aws:*)",
+      "Bash(gcloud:*)",
+      "Bash(az:*)",
+      "Bash(terraform:*)",
+      "Bash(ansible:*)",
+      "Bash(semgrep:*)",
+      "Bash(bandit:*)",
+      "Bash(safety:*)",
+      "Bash(trivy:*)",
+      "Bash(snyk:*)",
+      "Bash(truffleHog:*)",
+      "Bash(gitleaks:*)",
+      "Bash(wfuzz:*)",
+      "Bash(dirb:*)",
+      "Bash(dirbuster:*)",
+      "Bash(subfinder:*)",
+      "Bash(amass:*)",
+      "Bash(theHarvester:*)",
+      "Bash(shodan:*)",
+      "Bash(recon-ng:*)",
+      "Bash(maltego:*)",
+      "Bash(nuclei:*)",
+      "Bash(zaproxy:*)",
+      "Bash(burpsuite:*)"
+    ],
+    "deny": [
+      "Bash(rm -rf /*:*)",
+      "Bash(dd if=/dev/zero:*)",
+      "Bash(:(){ :|:& };::*)"
+    ]
+  }
+}

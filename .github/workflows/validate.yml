@@ -1,0 +1,136 @@
+name: Validate Studio Structure
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    name: Validate Agent & Skill Files
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Check required files exist
+        run: |
+          echo "Checking required studio files..."
+          
+          REQUIRED_FILES=(
+            "CLAUDE.md"
+            "README.md"
+            "LICENSE"
+            "SECURITY.md"
+            ".gitignore"
+            ".claude/settings.json"
+            ".claude/agents/tier1-directors/ciso.md"
+            ".claude/agents/tier1-directors/red-team-director.md"
+            ".claude/agents/tier1-directors/blue-team-director.md"
+            ".claude/skills/onboarding/start.md"
+            ".claude/skills/onboarding/help.md"
+            ".claude/skills/onboarding/scope-define.md"
+            ".claude/hooks/session-start.sh"
+            ".claude/hooks/validate-scope.sh"
+            ".claude/hooks/ethics-check.sh"
+          )
+          
+          MISSING=0
+          for file in "${REQUIRED_FILES[@]}"; do
+            if [ ! -f "$file" ]; then
+              echo "❌ MISSING: $file"
+              MISSING=$((MISSING + 1))
+            else
+              echo "✅ Found: $file"
+            fi
+          done
+          
+          if [ $MISSING -gt 0 ]; then
+            echo ""
+            echo "❌ $MISSING required file(s) missing!"
+            exit 1
+          fi
+          
+          echo ""
+          echo "✅ All required files present!"
+
+      - name: Count agents and skills
+        run: |
+          AGENTS=$(find .claude/agents -name "*.md" | wc -l)
+          SKILLS=$(find .claude/skills -name "*.md" | wc -l)
+          HOOKS=$(find .claude/hooks -name "*.sh" | wc -l)
+          RULES=$(find .claude/rules -name "*.md" | wc -l)
+          
+          echo "📊 Studio Statistics:"
+          echo "   Agents:  $AGENTS"
+          echo "   Skills:  $SKILLS"
+          echo "   Hooks:   $HOOKS"
+          echo "   Rules:   $RULES"
+
+      - name: Validate YAML frontmatter in agent files
+        run: |
+          echo "Checking agent YAML frontmatter..."
+          ERRORS=0
+          
+          for agent_file in .claude/agents/**/*.md; do
+            if [ -f "$agent_file" ]; then
+              # Check for required frontmatter fields
+              if ! grep -q "^name:" "$agent_file"; then
+                echo "❌ Missing 'name:' in $agent_file"
+                ERRORS=$((ERRORS + 1))
+              fi
+              if ! grep -q "^description:" "$agent_file"; then
+                echo "❌ Missing 'description:' in $agent_file"
+                ERRORS=$((ERRORS + 1))
+              fi
+              if ! grep -q "^model:" "$agent_file"; then
+                echo "❌ Missing 'model:' in $agent_file"
+                ERRORS=$((ERRORS + 1))
+              fi
+            fi
+          done
+          
+          if [ $ERRORS -gt 0 ]; then
+            echo "❌ $ERRORS frontmatter errors found!"
+            exit 1
+          fi
+          echo "✅ All agent frontmatter valid!"
+
+      - name: Check for accidentally committed secrets
+        run: |
+          echo "Scanning for accidentally committed secrets..."
+          
+          # Check for common secret patterns
+          if grep -rn "AKIA[0-9A-Z]\{16\}" . --include="*.md" --include="*.json" \
+             --exclude-dir=".git" 2>/dev/null | grep -v "example\|EXAMPLE\|placeholder\|YOUR_KEY"; then
+            echo "❌ Potential AWS key found!"
+            exit 1
+          fi
+          
+          if grep -rn "ghp_[a-zA-Z0-9]\{36\}" . --include="*.md" \
+             --exclude-dir=".git" 2>/dev/null; then
+            echo "❌ Potential GitHub token found!"
+            exit 1
+          fi
+          
+          echo "✅ No obvious secrets detected!"
+
+      - name: Validate settings.json
+        run: |
+          echo "Validating .claude/settings.json..."
+          python3 -c "
+          import json, sys
+          try:
+              with open('.claude/settings.json') as f:
+                  data = json.load(f)
+              print('✅ settings.json is valid JSON')
+              if 'hooks' in data:
+                  print(f'   Hooks configured: {list(data[\"hooks\"].keys())}')
+              if 'permissions' in data:
+                  print(f'   Permissions section present')
+          except json.JSONDecodeError as e:
+              print(f'❌ Invalid JSON: {e}')
+              sys.exit(1)
+          "

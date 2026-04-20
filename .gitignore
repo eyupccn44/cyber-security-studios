@@ -1,0 +1,79 @@
+# Logs directory (session audit trail)
+production/logs/
+
+# Engagement working files (contain sensitive client data)
+engagements/*/evidence/
+engagements/*/recon/*.txt
+engagements/*/recon/*.xml
+engagements/*/recon/*.json
+engagements/*/recon/*.gnmap
+engagements/*/recon/*.nmap
+
+# Malware samples (NEVER commit to git)
+lab/samples/
+lab/**/*.zip
+lab/**/*.exe
+lab/**/*.dll
+lab/**/*.elf
+lab/**/*.bin
+
+# Reports (client confidential)
+reports/*.pdf
+reports/*.docx
+
+# Active engagement config (contains target details)
+production/active-engagement.md
+production/session-state.md
+
+# Intelligence artifacts (may contain sensitive IOCs)
+intelligence/iocs/*.yaml
+intelligence/hunts/*/results.md
+
+# Environment and secrets
+.env
+.env.*
+*.key
+*.pem
+*.p12
+*.pfx
+secrets.txt
+credentials.txt
+
+# Tool output files
+*.nessus
+*.burp
+*.pcap
+*.cap
+nmap-output.*
+masscan-output.*
+
+# OS artifacts
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# Editor
+.vscode/settings.json
+.idea/
+*.swp
+*.swo
+*~
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+venv/
+.venv/
+
+# Node
+node_modules/
+npm-debug.log*

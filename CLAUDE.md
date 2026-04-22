@@ -88,7 +88,8 @@ Skills are organized in `.claude/skills/` by domain category.
 | AppSec | `/code-audit`, `/sast-scan`, `/threat-model` |
 | Cloud Security | `/cloud-audit`, `/iam-review`, `/k8s-security` |
 | GRC | `/risk-assess`, `/compliance-check`, `/policy-draft` |
-| Reporting | `/pentest-report`, `/exec-summary`, `/remediation-plan` |
+| Reporting | `/pentest-report`, `/exec-summary`, `/remediation-plan`, `/bug-bounty-report` |
+| Bug Bounty | `/burp-scan`, `/nuclei-hunt`, `/duplicate-check`, `/bug-bounty-report` |
 | DevSecOps | `/pipeline-secure`, `/secrets-audit`, `/sbom-generate` |
 | Team Ops | `/team-red`, `/team-blue`, `/team-purple` |
 

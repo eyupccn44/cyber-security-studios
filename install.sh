@@ -242,12 +242,14 @@ install_wordlists() {
     if [ ! -f "$WORDLIST_DIR/rockyou.txt" ]; then
         if [ -f /usr/share/wordlists/rockyou.txt.gz ]; then
             gunzip -c /usr/share/wordlists/rockyou.txt.gz > "$WORDLIST_DIR/rockyou.txt"
-            ok "rockyou.txt (extracted)"
+            ok "rockyou.txt (extracted from gz)"
         elif [ -f /usr/share/wordlists/rockyou.txt ]; then
             cp /usr/share/wordlists/rockyou.txt "$WORDLIST_DIR/"
-            ok "rockyou.txt (copied)"
+            ok "rockyou.txt (copied from system)"
         else
-            warn "rockyou.txt not found — download manually from https://github.com/brannondorsey/naive-hashcat/releases"
+            info "Downloading rockyou.txt (~134MB)..."
+            curl -sL "https://github.com/brannondorsey/naive-hashcat/releases/download/data/rockyou.txt" \
+                -o "$WORDLIST_DIR/rockyou.txt" && ok "rockyou.txt (downloaded)" || warn "rockyou.txt download failed"
         fi
     else
         ok "rockyou.txt (already exists)"
